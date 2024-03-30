@@ -74,6 +74,12 @@ public class CreditAccountTest {
         Assertions.assertEquals(false, account.pay(3_000));
     }
 
+    @Test
+    public void shouldNotPayIfAmountIsNegative() {
+        CreditAccount account = new CreditAccount(1_000, 1_000, 15);
+        Assertions.assertEquals(false, account.pay(-3_000));
+    }
+
     // Тесты на метод add ----------------------------------------------------------------------------------------------
     @Test
     public void shouldAddMoneyOnBalance() {
