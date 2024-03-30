@@ -17,14 +17,14 @@ public class CreditAccountTest {
     @Test
     public void shouldNotCreateNegativeBalance() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CreditAccount account = new CreditAccount(-5_000, 5_000, 15);
+            new CreditAccount(-5_000, 5_000, 15);
         });
     }
 
     @Test
     public void shouldNotCreateNegativeCreditLimit() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CreditAccount account = new CreditAccount(5_000, -5_000, 15);
+            new CreditAccount(5_000, -5_000, 15);
         });
     }
 
@@ -32,7 +32,7 @@ public class CreditAccountTest {
     public void shouldNotCreateNegativeRate() {
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CreditAccount account = new CreditAccount(0, 5_000, -15);
+            new CreditAccount(0, 5_000, -15);
         });
     }
 
