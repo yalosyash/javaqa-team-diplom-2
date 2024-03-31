@@ -23,27 +23,37 @@ public class SavingAccount extends Account {
     public SavingAccount(int initialBalance, int minBalance, int maxBalance, int rate) {
         if (minBalance > maxBalance) {
             throw new IllegalArgumentException(
-                    "Минимальный баланс не может быть больше максимального, а у вас: " + minBalance + " > " + maxBalance
+                    "Минимальный баланс(" + minBalance + ") не может быть больше максимального(" + maxBalance +")"
             );
         }
         if (initialBalance < 0) {
             throw new IllegalArgumentException(
-                    "Начальный баланс не может быть отрицательный, а у вас: " + initialBalance
+                    "Начальный баланс(" + initialBalance + ") не может быть отрицательный"
             );
         }
         if (minBalance < 0) {
             throw new IllegalArgumentException(
-                    "Минимальный баланс не может быть отрицательный, а у вас: " + minBalance
+                    "Минимальный баланс(" + minBalance + ") не может быть отрицательный"
             );
         }
-        if (maxBalance < 0) {
+        if (maxBalance == 0) {
             throw new IllegalArgumentException(
-                    "Максимальный баланс не может быть отрицательный, а у вас: " + maxBalance
+                    "Максимальный баланс(" + maxBalance + ") не может быть равен нулю"
             );
         }
         if (rate < 0) {
             throw new IllegalArgumentException(
-                    "Накопительная ставка не может быть отрицательной, а у вас: " + rate
+                    "Накопительная ставка(" + rate + ") не может быть отрицательной"
+            );
+        }
+        if (initialBalance > maxBalance) {
+            throw new IllegalArgumentException(
+                    "Начальный баланс(" + initialBalance + ") не может быть больше максимального(" + maxBalance + ")"
+            );
+        }
+        if (initialBalance < minBalance) {
+            throw new IllegalArgumentException(
+                    "Начальный баланс(" + initialBalance + ") не может быть меньше минимального(" + minBalance + ")"
             );
         }
         this.balance = initialBalance;
