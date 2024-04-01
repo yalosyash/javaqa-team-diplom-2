@@ -36,6 +36,7 @@ public class CreditAccount extends Account {
      * @param amount - сумма покупки
      * @return true если операция прошла успешно, false иначе.
      */
+    @Override
     public boolean pay(int amount) {
         if (amount <= 0) {
             return false;
@@ -60,6 +61,7 @@ public class CreditAccount extends Account {
      * @param amount
      * @return
      */
+    @Override
     public boolean add(int amount) {
         if (amount <= 0) {
             return false;
@@ -76,6 +78,7 @@ public class CreditAccount extends Account {
      * Пример 2: если на счёте 200 рублей, то при любой ставке ответ должен быть 0.
      * @return
      */
+    @Override
     public int yearChange() {
         return balance / 100 * rate;
     }
