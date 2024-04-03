@@ -30,12 +30,13 @@ public class SavingAccountTest {
         );
 
         account.add(0);
+        int actual = account.getBalance();
 
-        Assertions.assertEquals(false, false);
+        Assertions.assertEquals(2_000, actual);
     }
 
     @Test
-    public void OverMaxBalanceReplenishment() { // Пополнение средств сверх максимального баланса
+    public void overMaxBalanceReplenishment() { // Пополнение средств сверх максимального баланса
         SavingAccount account = new SavingAccount(
                 2_000,
                 1_000,
@@ -44,21 +45,21 @@ public class SavingAccountTest {
         );
 
         account.add(10_000);
+        int actual = account.getBalance();
 
-        Assertions.assertEquals(false, false);
+        Assertions.assertEquals(2_000, actual);
     }
 
     @Test
     public void testNegativeRate() { // сообщение о негативной ставке
-        SavingAccount account = new SavingAccount(
-                2_000,
-                0,
-                10_000,
-                -5
-        );
 
-        account.add(500);
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            new SavingAccount(
+                    2_000,
+                    0,
+                    10_000,
+                    -5);
+        });
     }
 
     @Test
@@ -71,8 +72,9 @@ public class SavingAccountTest {
         );
 
         account.pay(500);
+        int actual = account.getBalance();
 
-        Assertions.assertEquals(true, true);
+        Assertions.assertEquals(1_500, actual);
     }
 
     @Test
@@ -85,8 +87,9 @@ public class SavingAccountTest {
         );
 
         account.pay(0);
+        int actual = account.getBalance();
 
-        Assertions.assertEquals(false, false);
+        Assertions.assertEquals(2_000, actual);
     }
     @Test
     public void testPayAmountNegativeMinBalance() { // Отработка метода ниже минимального баланса
@@ -97,9 +100,19 @@ public class SavingAccountTest {
                 5
         );
 
+        Assertions.assertEquals(false, account.pay(500));
+    }
+    @Test
+    public void testPayNegativeMinBalance() { // Отработка метода ниже минимального баланса
+        SavingAccount account = new SavingAccount(
+                1_000,
+                1_000,
+                10_000,
+                5
+        );
         account.pay(500);
 
-        Assertions.assertEquals(false, false);
+        Assertions.assertEquals(1_000, account.getBalance());
     }
 
     @Test
@@ -112,8 +125,7 @@ public class SavingAccountTest {
         );
 
         account.add(2_000);
-        account.yearChange();
 
-        Assertions.assertEquals(3_150, account.getBalance());
+        Assertions.assertEquals(3_000/100*5, account.yearChange());
     }
 }
