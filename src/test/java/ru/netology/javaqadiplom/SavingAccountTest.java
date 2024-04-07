@@ -61,6 +61,7 @@ public class SavingAccountTest {
                     -5);
         });
     }
+
     @Test
     public void testInitialBalanceLessMin() { // сообщение о начальном балансе ниже минимального баланса
 
@@ -120,6 +121,7 @@ public class SavingAccountTest {
                     5);
         });
     }
+
     @Test
     public void testZeroMaxBalance() { // сообщение о нулевом максимальном балансе
 
@@ -161,6 +163,7 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(2_000, actual);
     }
+
     @Test
     public void testPayAmountNegativeMinBalance() { // Отработка метода ниже минимального баланса
         SavingAccount account = new SavingAccount(
@@ -184,8 +187,9 @@ public class SavingAccountTest {
 
         account.add(2_000);
 
-        Assertions.assertEquals(3_000/100*5, account.yearChange());
+        Assertions.assertEquals(3_000 / 100 * 5, account.yearChange());
     }
+
     @Test
     public void testGetMinBalance() { //Вызов Минимального баланса
         SavingAccount account = new SavingAccount(
