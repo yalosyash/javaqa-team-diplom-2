@@ -217,4 +217,10 @@ public class SavingAccountTest {
 
         Assertions.assertEquals(10_000, actual);
     }
+
+    @Test
+    public void shouldNotReckonPercentIfBalanceIsPositive() {
+        SavingAccount account = new SavingAccount(99, 0, 5_000, 80);
+        Assertions.assertEquals(79, account.yearChange());
+    }
 }

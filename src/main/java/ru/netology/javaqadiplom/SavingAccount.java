@@ -23,7 +23,7 @@ public class SavingAccount extends Account {
     public SavingAccount(int initialBalance, int minBalance, int maxBalance, int rate) {
         if (minBalance > maxBalance) {
             throw new IllegalArgumentException(
-                    "Минимальный баланс(" + minBalance + ") не может быть больше максимального(" + maxBalance +")"
+                    "Минимальный баланс(" + minBalance + ") не может быть больше максимального(" + maxBalance + ")"
             );
         }
         if (initialBalance < 0) {
@@ -116,7 +116,7 @@ public class SavingAccount extends Account {
      */
     @Override
     public int yearChange() {
-        return balance / 100 * rate;
+        return balance * rate / 100;
     }
 
     public int getMinBalance() {
